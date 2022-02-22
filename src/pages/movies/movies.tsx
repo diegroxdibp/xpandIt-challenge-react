@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable no-tabs */
 import { Pill } from '../../components/pill/pill'
 import { MovieGridHeader } from '../../components/movie-grid'
 import { MoviePageBody, PillsWrapper } from './styles'
@@ -7,6 +5,7 @@ import { DividerHeader } from '../../components/divider'
 import { MovieRankingState } from '../../models/movie-ranking-status'
 import { useState } from 'react'
 import { MovieRankingList } from '../../components/movie-list/movie-list'
+import { PillsOptions } from '../../models/pills-options'
 
 export const MovieRanking = () => {
   const [movieRankingState, useMovieRankingState] = useState<MovieRankingState>(
@@ -26,10 +25,11 @@ export const MovieRanking = () => {
             }
           }}
         >
-          <Pill title="Top 10 Revenue"></Pill>
+          <Pill title={PillsOptions.top10rev}></Pill>
         </div>
-        <Pill title="Top 10 Revenue per Year"></Pill>
+        <Pill title={PillsOptions.top10revYear}></Pill>
       </PillsWrapper>
+
       <MovieGridHeader>
         <span>RANKING</span>
         <span className="title">TITLE</span>
@@ -38,6 +38,7 @@ export const MovieRanking = () => {
         <span></span>
       </MovieGridHeader>
       <DividerHeader />
+
       <MovieRankingList state={movieRankingState}></MovieRankingList>
     </MoviePageBody>
   )

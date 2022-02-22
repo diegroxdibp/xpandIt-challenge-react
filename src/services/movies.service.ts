@@ -1,10 +1,8 @@
-/* eslint-disable no-useless-return */
 import axios, { Canceler } from 'axios'
 import { useEffect, useState } from 'react'
 import { Movie } from '../models/movie'
 
 const API_URL = 'http://movie-challenge-api-xpand.azurewebsites.net/api'
-// /api/movies?size=20&page=1
 export function getMovies (pageNumber: number) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)

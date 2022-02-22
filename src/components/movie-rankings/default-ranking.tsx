@@ -1,10 +1,10 @@
 import { useCallback, useRef, useState } from 'react'
-import { Divider } from '../../components/divider'
-import { EyeIcon } from '../../components/eye'
-import { MovieInfo } from '../../components/movie-grid'
+import { Divider } from '../divider'
+import { EyeIcon } from '../eye'
+import { MovieInfo } from '../movie-grid'
 import { Movie } from '../../models/movie'
 import { getMovies } from '../../services/movies.service'
-import { MoviesWrapper } from '../movies/styles'
+import { MoviesWrapper } from '../../pages/movies/styles'
 
 export const DefaultRanking = () => {
   const [pageNumber, setPageNumber] = useState(0)

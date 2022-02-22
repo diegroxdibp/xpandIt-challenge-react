@@ -1,7 +1,7 @@
 import React from 'react'
 import { MovieRankingState } from '../../models/movie-ranking-status'
-import { DefaultRanking } from '../../pages/movie-rankings/default-ranking'
-import { Top10 } from '../../pages/movie-rankings/top10'
+import { DefaultRanking } from '../movie-rankings/default-ranking'
+import { Top10 } from '../movie-rankings/top10'
 
 interface Props {
   state: MovieRankingState;
