@@ -27,8 +27,8 @@ export const DefaultRanking = () => {
   )
   return (
     <MoviesWrapper>
+      {console.log('AQUI', movies)}
       {movies.map((movie: Movie, index: number) => {
-        console.log(movie)
         if (index + 1 === movies.length) {
           return (
             <>

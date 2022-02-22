@@ -17,7 +17,7 @@ const Modal: React.FC<Props> = (props) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {props.movie.title}
-        <button type="button" onClick={props.handleClose()}>
+        <button type="button" onClick={() => props.handleClose()}>
           Close
         </button>
       </section>

@@ -24,11 +24,7 @@ export const Top10 = () => {
               <span>${movie.revenue}</span>
               <span
                 className="dialog-button"
-                onClick={(e) => {
-                  console.log(e)
-                  e.preventDefault()
-                  e.stopPropagation()
-                  e.nativeEvent.stopImmediatePropagation()
+                onClick={() => {
                   useModalState(true)
                 }}
               >
