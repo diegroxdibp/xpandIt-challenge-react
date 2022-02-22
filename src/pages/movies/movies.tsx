@@ -15,7 +15,7 @@ export const MovieRanking = () => {
   return (
     <MoviePageBody>
       <h1>Movie ranking</h1>
-      //TODO REFACTOR
+      {/* // TODO REFACTOR */}
       <PillsWrapper>
         <div
           onClick={() => {
