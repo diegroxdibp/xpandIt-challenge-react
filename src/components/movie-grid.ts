@@ -34,7 +34,8 @@ export const MovieGridHeader = styled(MovieGrid)`
     display: flex;
     justify-content: center;
     font-size: 10px;
-    font-weight: 700;
+    line-height: 13px;
+    font-weight: bold;
     color: ${colors.primary};
   }
 
@@ -56,18 +57,13 @@ export const MovieInfo = styled(MovieGrid)`
     font-size: 16px;
   }
 
-  .title {
-    justify-content: flex-start;
-  }
-
-  mat-icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 13px;
+  .dialog-button {
     cursor: pointer;
+
+    &:hover {
+      color: ${colors.text};
+      background: ${colors.hoverBackground};
+    }
   }
 
   @media only screen and (max-width: 600px) {
@@ -75,10 +71,6 @@ export const MovieInfo = styled(MovieGrid)`
       text-align: center;
       justify-content: center;
       font-size: 14px;
-    }
-
-    .title {
-      justify-content: center;
     }
   }
 `

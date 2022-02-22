@@ -1,10 +1,11 @@
 /* eslint-disable no-useless-return */
 import axios, { Canceler } from 'axios'
 import { useEffect, useState } from 'react'
+import { Movie } from '../models/movie'
 
 const API_URL = 'http://movie-challenge-api-xpand.azurewebsites.net/api'
 // /api/movies?size=20&page=1
-export default function getMovies (pageNumber: number) {
+export function getMovies (pageNumber: number) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [movies, setMovies] = useState([])
@@ -26,7 +27,6 @@ export default function getMovies (pageNumber: number) {
     })
       .then((response) => {
         setMovies((previousMovies) => {
-          // Remove duplicates
           return [...new Set([...previousMovies, ...response.data.content])]
         })
         setHasMore(response.data.content.length > 0)
@@ -40,4 +40,37 @@ export default function getMovies (pageNumber: number) {
   }, [pageNumber])
 
   return { loading, error, movies, hasMore }
+}
+
+export function getMoviesTop10Revenue () {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [movies, setMovies] = useState([])
+
+  useEffect(() => {
+    setMovies([])
+  }, [])
+
+  useEffect(() => {
+    setLoading(true)
+    setError(false)
+
+    axios({
+      method: 'GET',
+      url: `${API_URL}/movies`
+    })
+      .then((response) => {
+        setMovies(() => {
+          return response.data.content
+            .sort((a, b) => (a.revenue < b.revenue ? 1 : -1))
+            .filter((movie: Movie, index: number) => index < 10)
+        })
+        setLoading(false)
+      })
+      .catch((e) => {
+        setError(true)
+      })
+  }, [])
+
+  return { loading, error, movies }
 }

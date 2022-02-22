@@ -1,38 +1,25 @@
 /* eslint-disable no-tabs */
 import { Pill } from '../../components/pill/pill'
-import { MovieInfo, MovieGridHeader } from '../../components/movie-grid'
-import { MoviePageBody, MoviesWrapper, PillsWrapper } from './styles'
-import { Divider } from '../../components/divider'
-import getMovies from '../../services/movies.service'
-import { Movie } from '../../models/movie'
-import { useCallback, useRef, useState } from 'react'
-import { EyeIcon } from '../../components/eye'
+import { MovieGridHeader } from '../../components/movie-grid'
+import { MoviePageBody, PillsWrapper } from './styles'
+import { DividerHeader } from '../../components/divider'
+import { MovieRankingState } from '../../models/movie-ranking-status'
+import { useState } from 'react'
+import { MovieRankingList } from '../../components/movie-list/movie-list'
+// import { useState } from 'react'
+// import { PillState } from '../../hooks/pill-status'
 
 export const MovieRanking = () => {
-  const [pageNumber, setPageNumber] = useState(0)
-  const { loading, movies, hasMore } = getMovies(pageNumber)
-
-  const observer = useRef<IntersectionObserver | null>(null)
-  const lastMovie = useCallback(
-    (node) => {
-      if (loading) return
-      if (observer.current) observer.current.disconnect()
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1)
-          console.log(pageNumber)
-        }
-      })
-      if (node) observer.current.observe(node)
-    },
-    [loading, hasMore]
+  const [movieRankingState, useMovieRankingState] = useState<MovieRankingState>(
+    MovieRankingState.default
   )
-
   return (
     <MoviePageBody>
       <h1>Movie ranking</h1>
       <PillsWrapper>
-        <Pill title="Top 10 Revenue"></Pill>
+        <div onClick={() => useMovieRankingState(MovieRankingState.top10rev)}>
+          <Pill title="Top 10 Revenue"></Pill>
+        </div>
         <Pill title="Top 10 Revenue per Year"></Pill>
       </PillsWrapper>
 
@@ -43,45 +30,10 @@ export const MovieRanking = () => {
         <span>REVENUE</span>
         <span></span>
       </MovieGridHeader>
-      <Divider />
+      <DividerHeader />
 
-      <MoviesWrapper>
-        {movies.map((movie: Movie, index: number) => {
-          console.log(movie)
-          if (index + 1 === movies.length) {
-            return (
-              <>
-                <MovieInfo ref={lastMovie} key={movie.id}>
-                  <span>{movie.rank}</span>
-                  <span className="title">{movie.title}</span>
-                  <span>{movie.year}</span>
-                  <span>${movie.revenue}</span>
-                  <span>
-                    <img src="../../assets/eye.svg" alt="Eye icon" />
-                  </span>
-                </MovieInfo>
-              </>
-            )
-          } else {
-            return (
-              <>
-                <MovieInfo key={movie.id}>
-                  <span>{movie.rank}</span>
-                  <span className="title">{movie.title}</span>
-                  <span>{movie.year}</span>
-                  <span>{movie.revenue}</span>
-                  <span>
-                    <EyeIcon />
-                  </span>
-                </MovieInfo>
-                <Divider />
-              </>
-            )
-          }
-        })}
-      </MoviesWrapper>
+      <MovieRankingList state={movieRankingState}></MovieRankingList>
 
-      {/* <DefaultRanking /> */}
       {/* <Link to="/pageB">Navigate to Page B</Link> */}
     </MoviePageBody>
   )

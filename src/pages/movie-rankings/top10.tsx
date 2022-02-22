@@ -1,30 +1,32 @@
-import { Link } from 'react-router-dom'
+import { Divider } from '../../components/divider'
+import { EyeIcon } from '../../components/eye'
+import { MovieInfo } from '../../components/movie-grid'
+import { Movie } from '../../models/movie'
+import { getMoviesTop10Revenue } from '../../services/movies.service'
+import { MoviesWrapper } from '../movies/styles'
 
-export const MovieRanking = () => (
-  <div>
-    <h1>Movie ranking</h1>
-    <div className="top-ten">
-      <div className="pill">Top 10 Revenue</div>
-      <div className="pill">Top 10 Revenue per Year</div>
-    </div>
+export const Top10 = () => {
+  const { movies } = getMoviesTop10Revenue()
 
-    <div className="year-select-backdrop">
-      <div className="year-select">
-        <h1>Select a year</h1>
-        <span> year </span>
-      </div>
-    </div>
-
-    <div className=" movie-grid header">
-      <span>RANKING</span>
-      <span className="title">TITLE</span>
-      <span>YEAR</span>
-      <span>REVENUE</span>
-      <span></span>
-    </div>
-
-    <h2>Hello from page A</h2>
-    <br />
-    <Link to="/pageB">Navigate to Page B</Link>
-  </div>
-)
+  return (
+    <MoviesWrapper>
+      {movies.map((movie: Movie, index: number) => {
+        console.log(movie)
+        return (
+          <>
+            <MovieInfo key={movie.id}>
+              <span>{index + 1}</span>
+              <span className="title">{movie.title}</span>
+              <span>{movie.year}</span>
+              <span>${movie.revenue}</span>
+              <span className="dialog-button">
+                <EyeIcon />
+              </span>
+            </MovieInfo>
+            <Divider />
+          </>
+        )
+      })}
+    </MoviesWrapper>
+  )
+}

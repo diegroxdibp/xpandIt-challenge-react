@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
         }
   
         * {
-             font: 400 14px/1em Roboto,Helvetica Neue,sans-serif;
+             font: 400 16px/1em Roboto,Helvetica Neue,sans-serif;
              scrollbar-width: thin;
              scrollbar-color: ${colors.icon} transparent;
 
@@ -33,9 +33,11 @@ const GlobalStyles = createGlobalStyle`
 
         h1 {
             text-align: left;
-            font-size :24px;
+            font-size : 24px;
+            line-height : 30px;
             font-weight: normal;
             letter-spacing: 0px;
+            margin: 16px 0;
             color: ${colors.primary};
           }
           
