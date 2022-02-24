@@ -1,0 +1,73 @@
+.year-select-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  z-index: 10;
+}
+
+.year-select {
+  position: fixed;
+  background: white;
+  display: flex;
+  height: fit-content;
+  padding: 13px 0;
+  flex-direction: column;
+  background: white;
+  align-items: center;
+  animation: growDown 600ms ease-in-out forwards;
+  transform-origin: top center;
+  z-index: 11;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-none {
+  display: none;
+}
+
+.year-select h1 {
+  font-size: 12px;
+  line-height: 14px;
+  color: #78849eb9;
+  margin: 3px 0 14px 0;
+  padding: 0 55px;
+}
+
+.year-select span {
+  height: 17px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #536b7a;
+  padding: 4px 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.year-select span:hover {
+  background: #9aaebb27;
+}
+
+.year-select span:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.05);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

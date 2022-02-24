@@ -1,6 +1,6 @@
 import axios, { Canceler } from 'axios'
 import { useEffect, useState } from 'react'
-import { Movie } from '../models/movie'
+import { Movie, MovieFullDescription } from '../models/movie'
 
 const API_URL = 'http://movie-challenge-api-xpand.azurewebsites.net/api'
 export function getMovies (pageNumber: number) {
@@ -33,6 +33,7 @@ export function getMovies (pageNumber: number) {
       .catch((e) => {
         if (axios.isCancel(e)) return
         setError(true)
+        console.log(e)
       })
     return () => cancel()
   }, [pageNumber])
@@ -41,13 +42,9 @@ export function getMovies (pageNumber: number) {
 }
 
 export function getMoviesTop10Revenue () {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-  const [movies, setMovies] = useState([])
-
-  useEffect(() => {
-    setMovies([])
-  }, [])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
+  const [movies, setMovies] = useState<Movie[]>([])
 
   useEffect(() => {
     setLoading(true)
@@ -67,8 +64,51 @@ export function getMoviesTop10Revenue () {
       })
       .catch((e) => {
         setError(true)
+        console.log(e)
       })
   }, [])
 
   return { loading, error, movies }
+}
+
+export function getMoviesYears (): number[] {
+  const [years, setYears] = useState([])
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: `${API_URL}/movies`
+    })
+      .then((response) => {
+        setYears(() => {
+          return [
+            ...new Set([
+              ...response.data.content.map((movie: Movie) => movie.year)
+            ])
+          ].sort()
+        })
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [])
+  console.log('years', years)
+  return years
+}
+
+export function getMoviesFullDescription (id: string) {
+  const [movie, setMovie] = useState<any>()
+  useEffect(() => {
+    axios
+      .get<MovieFullDescription>(`${API_URL}/movies/${id}`)
+      .then((response) => {
+        console.log(response)
+        setMovie(response)
+        return response
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [])
+  return movie
 }

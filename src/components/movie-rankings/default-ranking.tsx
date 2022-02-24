@@ -5,9 +5,11 @@ import { MovieInfo } from '../movie-grid'
 import { Movie } from '../../models/movie'
 import { getMovies } from '../../services/movies.service'
 import { MoviesWrapper } from '../../pages/movies/styles'
+import MovieDetail from '../movie-detail/movie-details'
 
 export const DefaultRanking = () => {
   const [pageNumber, setPageNumber] = useState(0)
+  const [modalState, useModalState] = useState<string>('')
   const { loading, movies, hasMore } = getMovies(pageNumber)
 
   const observer = useRef<IntersectionObserver | null>(null)
@@ -37,10 +39,24 @@ export const DefaultRanking = () => {
                 <span className="title">{movie.title}</span>
                 <span>{movie.year}</span>
                 <span>${movie.revenue}</span>
-                <span className="dialog-button">
-                  <img src="../../assets/eye.svg" alt="Eye icon" />
+                <span
+                  className="dialog-button"
+                  onClick={() => {
+                    useModalState(movie.id)
+                  }}
+                >
+                  <EyeIcon />
                 </span>
               </MovieInfo>
+              {modalState === movie.id
+                ? (
+                <MovieDetail
+                  movie={movie}
+                  show={modalState}
+                  handleClose={() => useModalState('')}
+                ></MovieDetail>
+                  )
+                : null}
             </>
           )
         } else {
@@ -51,11 +67,25 @@ export const DefaultRanking = () => {
                 <span className="title">{movie.title}</span>
                 <span>{movie.year}</span>
                 <span>${movie.revenue}</span>
-                <span className="dialog-button">
+                <span
+                  className="dialog-button"
+                  onClick={() => {
+                    useModalState(movie.id)
+                  }}
+                >
                   <EyeIcon />
                 </span>
               </MovieInfo>
               <Divider />
+              {modalState === movie.id
+                ? (
+                <MovieDetail
+                  movie={movie}
+                  show={modalState}
+                  handleClose={() => useModalState('')}
+                ></MovieDetail>
+                  )
+                : null}
             </>
           )
         }

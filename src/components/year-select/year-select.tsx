@@ -1,25 +1,26 @@
-import React from 'react'
-import './modal.css'
+import { FC } from 'react'
+import { getMoviesYears } from '../../services/movies.service'
+import './year-select.css'
 
 interface Props {
   handleClose: Function;
   show: boolean;
 }
 
-const YearSelect: React.FC<Props> = (props) => {
+const YearSelect: FC<Props> = (props) => {
+  const moviesYears = getMoviesYears()
+
   const showHideClassName = props.show
-    ? 'modal display-block'
-    : 'modal display-none'
+    ? 'year-select-backdrop display-flex'
+    : 'year-select-backdrop display-none'
 
   return (
-    <div className={showHideClassName}>
-      <section className="modal-main">
-        <span>2022</span>
-        <span>2021</span>
-        <span>2020</span>
-        <button type="button" onClick={() => props.handleClose()}>
-          Close
-        </button>
+    <div className={showHideClassName} onClick={() => props.handleClose()}>
+      <section className="year-select">
+        <h1>Select a year</h1>
+        {moviesYears.map((movieYear: number) => (
+          <span key={movieYear}>{movieYear}</span>
+        ))}
       </section>
     </div>
   )

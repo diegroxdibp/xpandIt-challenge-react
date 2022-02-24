@@ -4,12 +4,12 @@ import { MovieInfo } from '../movie-grid'
 import { Movie } from '../../models/movie'
 import { getMoviesTop10Revenue } from '../../services/movies.service'
 import { MoviesWrapper } from '../../pages/movies/styles'
-import Modal from '../movie-detail/movie-details'
 import { useState } from 'react'
+import MovieDetail from '../movie-detail/movie-details'
 
 export const Top10 = () => {
   const { movies } = getMoviesTop10Revenue()
-  const [modalState, useModalState] = useState<boolean>()
+  const [modalState, useModalState] = useState<string>('')
 
   return (
     <MoviesWrapper>
@@ -25,19 +25,22 @@ export const Top10 = () => {
               <span
                 className="dialog-button"
                 onClick={() => {
-                  useModalState(true)
+                  useModalState(movie.id)
                 }}
               >
                 <EyeIcon />
               </span>
             </MovieInfo>
             <Divider />
-
-            <Modal
-              movie={movie}
-              show={modalState}
-              handleClose={() => useModalState(false)}
-            ></Modal>
+            {modalState === movie.id
+              ? (
+              <MovieDetail
+                movie={movie}
+                show={modalState}
+                handleClose={() => useModalState('')}
+              ></MovieDetail>
+                )
+              : null}
           </>
         )
       })}

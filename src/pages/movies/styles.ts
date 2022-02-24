@@ -8,7 +8,7 @@ export const MoviePageBody = styled.div`
   margin: 0 auto;
   overflow-x: hidden;
 
-  h1 {
+  & > h1 {
     margin-top: 1.5rem;
   }
 
