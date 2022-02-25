@@ -1,14 +1,41 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 
-export const MovieDetailBody = styled.div`
-  padding: 30px 58px 0px 58px;
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
+  z-index: 10;
 
-  /* top: 71px; */
+    @media only screen and (max-width: 600px) {
+      padding: 16px 16px 0 16px;
+    }
+  }
+`
+export const Modal = styled.div`
+  width: 750px;
+  max-width: 80vw;
+  position: fixed;
+  background: white;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow-y: scroll;
+  max-height: 600px;
+  padding: 30px 58px 30px 58px;
 
   @media only screen and (max-width: 600px) {
     padding: 16px 16px 0 16px;
   }
+
   header {
     display: flex;
     align-items: center;
@@ -56,7 +83,7 @@ export const MovieDetailBody = styled.div`
   }
 
   .dialog-content {
-    margin: 16px 0 30px 0;
+    margin-top: 16px;
 
     .info {
       margin-bottom: 16px;

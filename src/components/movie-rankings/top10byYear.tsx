@@ -18,7 +18,6 @@ export const Top10ByYear: FC<Props> = (props) => {
   return (
     <MoviesWrapper>
       {movies.map((movie: Movie, index: number) => {
-        console.log(movie)
         return (
           <>
             <MovieInfo key={movie.id}>

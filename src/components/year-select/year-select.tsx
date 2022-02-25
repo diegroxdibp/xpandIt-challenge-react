@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { getMoviesYears } from '../../services/movies.service'
-import './year-select.css'
+import { YearSelectBackdrop, YearSelectWindow } from './styles'
 
 interface Props {
   handleClose: Function;
@@ -11,20 +11,20 @@ const YearSelect: FC<Props> = (props) => {
   const moviesYears = getMoviesYears()
 
   const showHideClassName = props.show
-    ? 'year-select-backdrop display-flex'
-    : 'year-select-backdrop display-none'
+    ? { display: 'flex' }
+    : { display: 'none' }
 
   return (
-    <div className={showHideClassName}>
-      <section className="year-select">
+    <YearSelectBackdrop style={showHideClassName}>
+      <YearSelectWindow>
         <h1>Select a year</h1>
         {moviesYears.map((movieYear: number) => (
           <span key={movieYear} onClick={() => props.handleClose(movieYear)}>
             {movieYear}
           </span>
         ))}
-      </section>
-    </div>
+      </YearSelectWindow>
+    </YearSelectBackdrop>
   )
 }
 

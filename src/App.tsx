@@ -9,8 +9,6 @@ function App () {
         <Navigation></Navigation>
         <Routes>
           <Route path="/" element={<MovieRanking />}></Route>
-          {/* <Route path="/about" element={<About />}></Route>
-          <Route path="/contact" element={<Contact />}></Route> */}
         </Routes>
       </div>
     </Router>

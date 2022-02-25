@@ -18,12 +18,12 @@ export const Pill: React.FC<Props> = (props) => {
   return (
     <>
       <PillStyle>
-        {props.title === PillsOptions.top10revYear
+        {props.title === PillsOptions.top10rev
           ? (
-          <span onClick={() => useModalState(true)}>{props.title}</span>
+          <span>{props.title}</span>
             )
           : (
-          <span>{props.title}</span>
+          <span onClick={() => useModalState(true)}>{props.title}</span>
             )}
       </PillStyle>
 

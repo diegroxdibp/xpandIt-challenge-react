@@ -94,7 +94,6 @@ export function getMoviesYears (): number[] {
         console.log(e)
       })
   }, [])
-  console.log('years', years)
   return years
 }
 // api/movies?start=2012&end=2012
@@ -128,15 +127,16 @@ export function getMoviesByYear (year: number) {
   return { loading, error, movies }
 }
 
-export function getMoviesFullDescription (id: string) {
+export function getMoviesFullDescription (id: string): MovieFullDescription {
   const [movie, setMovie] = useState<any>()
   useEffect(() => {
     axios
       .get<MovieFullDescription>(`${API_URL}/movies/${id}`)
       .then((response) => {
-        console.log(response)
-        setMovie(response)
-        return response
+        console.log(response.data)
+        setMovie(() => {
+          return response.data
+        })
       })
       .catch((e) => {
         console.log(e)
