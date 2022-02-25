@@ -15,11 +15,13 @@ const YearSelect: FC<Props> = (props) => {
     : 'year-select-backdrop display-none'
 
   return (
-    <div className={showHideClassName} onClick={() => props.handleClose()}>
+    <div className={showHideClassName}>
       <section className="year-select">
         <h1>Select a year</h1>
         {moviesYears.map((movieYear: number) => (
-          <span key={movieYear}>{movieYear}</span>
+          <span key={movieYear} onClick={() => props.handleClose(movieYear)}>
+            {movieYear}
+          </span>
         ))}
       </section>
     </div>

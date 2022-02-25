@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { MovieRankingState } from '../../models/movie-ranking-status'
 import { PillsOptions } from '../../models/pills-options'
 import YearSelect from '../year-select/year-select'
 import { PillStyle } from './styles'
 
 interface Props {
   title: string;
+  onClick?: Function;
+  handleClose?: Function[];
 }
 
 export const Pill: React.FC<Props> = (props) => {
@@ -26,8 +29,11 @@ export const Pill: React.FC<Props> = (props) => {
 
       <YearSelect
         show={modalState}
-        handleClose={() => {
+        handleClose={(year) => {
           useModalState(false)
+          props.handleClose[0](year)
+          props.handleClose[1](MovieRankingState.top10revYear)
+          console.log('Selected Yead ->', year)
         }}
       ></YearSelect>
     </>

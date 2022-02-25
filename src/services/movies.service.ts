@@ -85,7 +85,9 @@ export function getMoviesYears (): number[] {
             ...new Set([
               ...response.data.content.map((movie: Movie) => movie.year)
             ])
-          ].sort()
+          ]
+            .sort()
+            .reverse()
         })
       })
       .catch((e) => {
@@ -94,6 +96,36 @@ export function getMoviesYears (): number[] {
   }, [])
   console.log('years', years)
   return years
+}
+// api/movies?start=2012&end=2012
+export function getMoviesByYear (year: number) {
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
+  const [movies, setMovies] = useState<Movie[]>([])
+
+  useEffect(() => {
+    setLoading(true)
+    setError(false)
+
+    axios({
+      method: 'GET',
+      url: `${API_URL}/movies?start=${year}&end=${year}`
+    })
+      .then((response) => {
+        setMovies(() => {
+          return response.data.content
+            .sort((a, b) => (a.revenue < b.revenue ? 1 : -1))
+            .filter((movie: Movie, index: number) => index < 10)
+        })
+        setLoading(false)
+      })
+      .catch((e) => {
+        setError(true)
+        console.log(e)
+      })
+  }, [])
+
+  return { loading, error, movies }
 }
 
 export function getMoviesFullDescription (id: string) {

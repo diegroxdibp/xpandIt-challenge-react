@@ -8,9 +8,10 @@ import { MovieRankingList } from '../../components/movie-list/movie-list'
 import { PillsOptions } from '../../models/pills-options'
 
 export const MovieRanking = () => {
-  const [movieRankingState, useMovieRankingState] = useState<MovieRankingState>(
+  const [movieRankingState, setMovieRankingState] = useState<MovieRankingState>(
     MovieRankingState.default
   )
+  const [selectedYear, setSelectedYear] = useState<number>()
   return (
     <MoviePageBody>
       <h1>Movie ranking</h1>
@@ -19,15 +20,18 @@ export const MovieRanking = () => {
         <div
           onClick={() => {
             if (movieRankingState === MovieRankingState.default) {
-              useMovieRankingState(MovieRankingState.top10rev)
+              setMovieRankingState(MovieRankingState.top10rev)
             } else {
-              useMovieRankingState(MovieRankingState.default)
+              setMovieRankingState(MovieRankingState.default)
             }
           }}
         >
           <Pill title={PillsOptions.top10rev}></Pill>
         </div>
-        <Pill title={PillsOptions.top10revYear}></Pill>
+        <Pill
+          title={PillsOptions.top10revYear}
+          handleClose={[setSelectedYear, setMovieRankingState]}
+        ></Pill>
       </PillsWrapper>
 
       <MovieGridHeader>
@@ -39,7 +43,10 @@ export const MovieRanking = () => {
       </MovieGridHeader>
       <DividerHeader />
 
-      <MovieRankingList state={movieRankingState}></MovieRankingList>
+      <MovieRankingList
+        state={movieRankingState}
+        year={selectedYear}
+      ></MovieRankingList>
     </MoviePageBody>
   )
 }
