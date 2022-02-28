@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
 import { MovieRanking } from './pages/movies/movies'
 import { Navigation } from './pages/navbar/Navigation'
 function App () {

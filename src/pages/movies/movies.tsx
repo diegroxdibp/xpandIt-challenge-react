@@ -6,12 +6,15 @@ import { MovieRankingState } from '../../models/movie-ranking-status'
 import { useState } from 'react'
 import { MovieRankingList } from '../../components/movie-list/movie-list'
 import { PillsOptions } from '../../models/pills-options'
+import { useDispatch } from 'react-redux'
+import { movieRanking } from '../../redux/actions/select-movie-ranking'
 
 export const MovieRanking = () => {
   const [movieRankingState, setMovieRankingState] = useState<MovieRankingState>(
     MovieRankingState.default
   )
   const [selectedYear, setSelectedYear] = useState<number>()
+  const dispatch = useDispatch()
   return (
     <MoviePageBody>
       <h1>Movie ranking</h1>
@@ -19,11 +22,12 @@ export const MovieRanking = () => {
       <PillsWrapper>
         <div
           onClick={() => {
-            if (movieRankingState === MovieRankingState.default) {
-              setMovieRankingState(MovieRankingState.top10rev)
-            } else {
-              setMovieRankingState(MovieRankingState.default)
-            }
+            dispatch(movieRanking(MovieRankingState.top10rev))
+            // if (movieRankingState === MovieRankingState.default) {
+            //   setMovieRankingState(MovieRankingState.top10rev)
+            // } else {
+            //   setMovieRankingState(MovieRankingState.default)
+            // }
           }}
         >
           <Pill title={PillsOptions.top10rev}></Pill>
