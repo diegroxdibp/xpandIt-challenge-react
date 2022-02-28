@@ -96,7 +96,7 @@ export function getMoviesYears (): number[] {
   }, [])
   return years
 }
-// api/movies?start=2012&end=2012
+
 export function getMoviesByYear (year: number) {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<boolean>(false)
