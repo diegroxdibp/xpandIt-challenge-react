@@ -1,7 +1,6 @@
 import { MovieRankingState } from '../../models/movie-ranking-status'
 
 export const movieRanking = (ranking: MovieRankingState) => {
-  console.log(ranking)
   switch (ranking) {
     case MovieRankingState.default:
       return {

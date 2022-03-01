@@ -1,11 +1,12 @@
 import { useCallback, useRef, useState } from 'react'
 import { Divider } from '../divider'
-import { EyeIcon } from '../eye'
 import { MovieInfo } from '../movie-grid'
 import { Movie } from '../../models/movie'
 import { getMovies } from '../../services/movies.service'
 import { MoviesWrapper } from '../../pages/movies/styles'
 import MovieDetail from '../movie-detail/movie-details'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 export const DefaultRanking = () => {
   const [pageNumber, setPageNumber] = useState(0)
@@ -45,7 +46,7 @@ export const DefaultRanking = () => {
                     useModalState(movie.id)
                   }}
                 >
-                  <EyeIcon />
+                  <FontAwesomeIcon icon={faEye} />
                 </span>
               </MovieInfo>
               {modalState === movie.id
@@ -73,7 +74,7 @@ export const DefaultRanking = () => {
                     useModalState(movie.id)
                   }}
                 >
-                  <EyeIcon />
+                  <FontAwesomeIcon icon={faEye} />
                 </span>
               </MovieInfo>
               <Divider />

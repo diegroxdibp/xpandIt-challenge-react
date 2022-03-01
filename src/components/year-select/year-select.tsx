@@ -1,28 +1,29 @@
 import { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MovieRankingState } from '../../models/movie-ranking-status'
+import { movieRanking } from '../../redux/actions/select-movie-ranking'
 import { selectYear } from '../../redux/actions/select-year'
-import { RootState } from '../../redux/reducers'
+import { yearSelection } from '../../redux/actions/year-selection'
 import { getMoviesYears } from '../../services/movies.service'
 import { YearSelectBackdrop, YearSelectWindow } from './styles'
 
 const YearSelect: FC = () => {
   const moviesYears = getMoviesYears()
-  const MOVIE_RANKING = useSelector((state: RootState) => state.movieRanking)
-  const YEAR = useSelector((state: RootState) => state.year)
   const dispatch = useDispatch()
 
-  const showHide =
-    MOVIE_RANKING.state === MovieRankingState.top10revYear && !YEAR.state
-      ? { display: 'flex' }
-      : { display: 'none' }
-
   return (
-    <YearSelectBackdrop style={showHide}>
+    <YearSelectBackdrop>
       <YearSelectWindow>
         <h1>Select a year</h1>
         {moviesYears.map((movieYear: number) => (
-          <span key={movieYear} onClick={() => dispatch(selectYear(movieYear))}>
+          <span
+            key={movieYear}
+            onClick={() => {
+              dispatch(selectYear(movieYear))
+              dispatch(yearSelection(false))
+              dispatch(movieRanking(MovieRankingState.top10revYear))
+            }}
+          >
             {movieYear}
           </span>
         ))}

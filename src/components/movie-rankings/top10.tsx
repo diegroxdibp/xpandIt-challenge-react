@@ -1,11 +1,12 @@
 import { Divider } from '../divider'
-import { EyeIcon } from '../eye'
 import { MovieInfo } from '../movie-grid'
 import { Movie } from '../../models/movie'
 import { getMoviesTop10Revenue } from '../../services/movies.service'
 import { MoviesWrapper } from '../../pages/movies/styles'
 import { useState } from 'react'
 import MovieDetail from '../movie-detail/movie-details'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 export const Top10 = () => {
   const { movies } = getMoviesTop10Revenue()
@@ -28,7 +29,7 @@ export const Top10 = () => {
                   useModalState(movie.id)
                 }}
               >
-                <EyeIcon />
+                <FontAwesomeIcon icon={faEye} />
               </span>
             </MovieInfo>
             <Divider />

@@ -17,6 +17,7 @@ export const YearSelectBackdrop = styled.div`
 `
 
 export const YearSelectWindow = styled.div`
+  dislplay: flex;
   position: fixed;
   background: white;
   display: flex;

@@ -9,7 +9,6 @@ import { Top10ByYear } from '../movie-rankings/top10byYear'
 export const MovieRankingList: FC = () => {
   const MOVIE_RANKING = useSelector((state: RootState) => state.movieRanking)
   const YEAR = useSelector((state: RootState) => state.year)
-
   switch (MOVIE_RANKING.state) {
     case MovieRankingState.default:
       return <DefaultRanking />
