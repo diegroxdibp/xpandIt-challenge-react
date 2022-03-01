@@ -3,8 +3,8 @@ import movieRankingStateReducer from './movie-ranking-state-reducer'
 import yearReducer from './year-reducer'
 
 const rootReducer = combineReducers({
-  movieRankingStateReducer,
-  yearReducer
+  movieRanking: movieRankingStateReducer,
+  year: yearReducer
 })
 
 export default rootReducer

@@ -3,17 +3,14 @@ import { MovieGridHeader } from '../../components/movie-grid'
 import { MoviePageBody, PillsWrapper } from './styles'
 import { DividerHeader } from '../../components/divider'
 import { MovieRankingState } from '../../models/movie-ranking-status'
-import { useState } from 'react'
 import { MovieRankingList } from '../../components/movie-list/movie-list'
 import { PillsOptions } from '../../models/pills-options'
 import { useDispatch } from 'react-redux'
 import { movieRanking } from '../../redux/actions/select-movie-ranking'
+import { selectYear } from '../../redux/actions/select-year'
+import YearSelect from '../../components/year-select/year-select'
 
 export const MovieRanking = () => {
-  const [movieRankingState, setMovieRankingState] = useState<MovieRankingState>(
-    MovieRankingState.default
-  )
-  const [selectedYear, setSelectedYear] = useState<number>()
   const dispatch = useDispatch()
   return (
     <MoviePageBody>
@@ -23,6 +20,7 @@ export const MovieRanking = () => {
         <div
           onClick={() => {
             dispatch(movieRanking(MovieRankingState.top10rev))
+            dispatch(selectYear(null))
             // if (movieRankingState === MovieRankingState.default) {
             //   setMovieRankingState(MovieRankingState.top10rev)
             // } else {
@@ -32,11 +30,17 @@ export const MovieRanking = () => {
         >
           <Pill title={PillsOptions.top10rev}></Pill>
         </div>
-        <Pill
-          title={PillsOptions.top10revYear}
-          handleClose={[setSelectedYear, setMovieRankingState]}
-        ></Pill>
+        <div
+          onClick={() => {
+            dispatch(selectYear(null))
+            dispatch(movieRanking(MovieRankingState.top10revYear))
+          }}
+        >
+          <Pill title={PillsOptions.top10revYear}></Pill>
+        </div>
       </PillsWrapper>
+
+      <YearSelect />
 
       <MovieGridHeader>
         <span>RANKING</span>
@@ -47,10 +51,7 @@ export const MovieRanking = () => {
       </MovieGridHeader>
       <DividerHeader />
 
-      <MovieRankingList
-        state={movieRankingState}
-        year={selectedYear}
-      ></MovieRankingList>
+      <MovieRankingList />
     </MoviePageBody>
   )
 }

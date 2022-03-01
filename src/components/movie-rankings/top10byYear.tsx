@@ -6,15 +6,13 @@ import { MoviesWrapper } from '../../pages/movies/styles'
 import { FC, useState } from 'react'
 import MovieDetail from '../movie-detail/movie-details'
 import { getMoviesByYear } from '../../services/movies.service'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/reducers'
 
-interface Props {
-  year: number;
-}
-
-export const Top10ByYear: FC<Props> = (props) => {
-  const { movies } = getMoviesByYear(props.year)
+export const Top10ByYear: FC = () => {
+  const YEAR = useSelector((state: RootState) => state.year)
+  const { movies } = getMoviesByYear(YEAR.state)
   const [modalState, useModalState] = useState<string>('')
-  console.log('props year', props.year)
   return (
     <MoviesWrapper>
       {movies.map((movie: Movie, index: number) => {

@@ -1,10 +1,7 @@
-const yearReducer = (
-  action = { type: 'YEAR', payload: 2022 },
-  state = 2000
-) => {
+const yearReducer = (state = { state: null }, action) => {
   switch (action.type) {
     case 'YEAR':
-      return action.payload
+      return Object.assign({}, state, { state: action.payload })
     default:
       return state
   }
