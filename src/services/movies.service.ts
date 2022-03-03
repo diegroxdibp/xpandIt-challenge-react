@@ -122,7 +122,7 @@ export function getMoviesByYear (year: number) {
         setError(true)
         console.log(e)
       })
-  }, [])
+  }, [year])
 
   return { loading, error, movies }
 }

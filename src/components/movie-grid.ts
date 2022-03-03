@@ -60,9 +60,12 @@ export const MovieInfo = styled(MovieGrid)`
   .dialog-button {
     cursor: pointer;
 
-    &:hover {
+    &:hover > svg {
       color: ${colors.text};
-      background: ${colors.hoverBackground};
+    }
+
+    svg {
+      color: ${colors.icon};
     }
   }
 

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { MovieRanking } from './pages/movies/movies'
 import { Navigation } from './pages/navbar/Navigation'
 function App () {
@@ -6,9 +6,7 @@ function App () {
     <Router>
       <div className="App">
         <Navigation></Navigation>
-        <Routes>
-          <Route path="/" element={<MovieRanking />}></Route>
-        </Routes>
+        <MovieRanking />
       </div>
     </Router>
   )

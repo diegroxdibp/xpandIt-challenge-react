@@ -12,14 +12,14 @@ import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 export const Top10ByYear: FC = () => {
   const YEAR = useSelector((state: RootState) => state.year)
-  const { movies } = getMoviesByYear(YEAR.state)
   const [modalState, useModalState] = useState<string>('')
-  console.log('YEAR->', YEAR.state)
+  const { movies } = getMoviesByYear(YEAR.state)
+
   return (
     <MoviesWrapper>
       {movies.map((movie: Movie, index: number) => {
         return (
-          <>
+          <div key={movie.id} className="wrapper">
             <MovieInfo key={movie.id}>
               <span>{index + 1}</span>
               <span className="title">{movie.title}</span>
@@ -44,7 +44,7 @@ export const Top10ByYear: FC = () => {
               ></MovieDetail>
                 )
               : null}
-          </>
+          </div>
         )
       })}
     </MoviesWrapper>

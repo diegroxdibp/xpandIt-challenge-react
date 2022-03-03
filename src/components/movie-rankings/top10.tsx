@@ -15,9 +15,8 @@ export const Top10 = () => {
   return (
     <MoviesWrapper>
       {movies.map((movie: Movie, index: number) => {
-        console.log(movie)
         return (
-          <>
+          <div key={movie.id} className="wrapper">
             <MovieInfo key={movie.id}>
               <span>{index + 1}</span>
               <span className="title">{movie.title}</span>
@@ -42,7 +41,7 @@ export const Top10 = () => {
               ></MovieDetail>
                 )
               : null}
-          </>
+          </div>
         )
       })}
     </MoviesWrapper>

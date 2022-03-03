@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
              font: 400 16px/1em Roboto,Helvetica Neue,sans-serif;
              scrollbar-width: thin;
              scrollbar-color: ${colors.icon} transparent;
+             
 
              &::-webkit-scrollbar {
                 width: 5px;
@@ -29,6 +30,11 @@ const GlobalStyles = createGlobalStyle`
                 border-radius: 20px;
                 border: 3px solid transparent;
               }
+        }
+
+        body{
+          margin: 0;
+          padding: 0;
         }
 
         h1 {

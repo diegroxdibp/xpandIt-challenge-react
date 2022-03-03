@@ -2,18 +2,17 @@ import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 
 export const YearSelectBackdrop = styled.div`
-  .year-select-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
-    z-index: 10;
-  }
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  z-index: 10;
 `
 
 export const YearSelectWindow = styled.div`

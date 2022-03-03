@@ -19,6 +19,7 @@ const YearSelect: FC = () => {
           <span
             key={movieYear}
             onClick={() => {
+              dispatch(selectYear(null))
               dispatch(selectYear(movieYear))
               dispatch(yearSelection(false))
               dispatch(movieRanking(MovieRankingState.top10revYear))

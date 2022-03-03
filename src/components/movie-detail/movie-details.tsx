@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from 'react'
-import { Movie, MovieFullDescription } from '../../models/movie'
+import { FC } from 'react'
+import { Movie } from '../../models/movie'
 import { Modal, ModalOverlay } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { colors } from '../../styles/colors'
-import axios from 'axios'
+import { getMoviesFullDescription } from '../../services/movies.service'
 interface Props {
   handleClose: Function;
   show: string;
@@ -12,21 +12,7 @@ interface Props {
 }
 
 const MovieDetail: FC<Props> = (props) => {
-  const [movie, setMovie] = useState<MovieFullDescription>(null)
-  useEffect(() => {
-    console.log('useEffect')
-    axios
-      .get(
-        `http://movie-challenge-api-xpand.azurewebsites.net/api/movies/${props.movie.id}`
-      )
-      .then((response) => {
-        console.log(response)
-        setMovie(response.data)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  }, [props])
+  const movie = getMoviesFullDescription(props.movie.id)
 
   const showHideclassNameName = props.show
     ? { display: 'block' }

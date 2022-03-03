@@ -30,11 +30,10 @@ export const DefaultRanking = () => {
   )
   return (
     <MoviesWrapper>
-      {console.log('AQUI', movies)}
       {movies.map((movie: Movie, index: number) => {
         if (index + 1 === movies.length) {
           return (
-            <>
+            <div key={movie.id} className="wrapper">
               <MovieInfo ref={lastMovie} key={movie.id}>
                 <span>{movie.rank}</span>
                 <span className="title">{movie.title}</span>
@@ -49,6 +48,7 @@ export const DefaultRanking = () => {
                   <FontAwesomeIcon icon={faEye} />
                 </span>
               </MovieInfo>
+
               {modalState === movie.id
                 ? (
                 <MovieDetail
@@ -58,12 +58,12 @@ export const DefaultRanking = () => {
                 ></MovieDetail>
                   )
                 : null}
-            </>
+            </div>
           )
         } else {
           return (
-            <>
-              <MovieInfo key={movie.id}>
+            <div key={movie.id} className="wrapper">
+              <MovieInfo>
                 <span>{movie.rank}</span>
                 <span className="title">{movie.title}</span>
                 <span>{movie.year}</span>
@@ -87,7 +87,7 @@ export const DefaultRanking = () => {
                 ></MovieDetail>
                   )
                 : null}
-            </>
+            </div>
           )
         }
       })}
