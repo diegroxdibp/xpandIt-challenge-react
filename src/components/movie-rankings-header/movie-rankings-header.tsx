@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { DividerHeader } from '../divider'
 import { MovieGridHeader } from '../movie-grid'
 
-export const MenuRankingHeader: FC = () => {
+export const MovieRankingHeader: FC = () => {
   return (
     <>
       <MovieGridHeader>

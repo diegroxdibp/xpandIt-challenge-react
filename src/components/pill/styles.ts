@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 
-export const PillStyle = styled.div`
+export const PillBody = styled.div`
   width: fit-content;
   font-size: 12px;
   font-weight: 300;

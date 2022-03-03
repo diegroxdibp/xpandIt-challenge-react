@@ -8,18 +8,17 @@ const movieRankingStateReducer = (
   }
 ) => {
   switch (action.type) {
+    case MovieRankingState.default:
+      return Object.assign({}, state, { state: action.payload })
+
     case MovieRankingState.top10rev:
-      if (state.state === action.payload) {
-        return Object.assign({}, state, { state: MovieRankingState.default })
-      } else {
-        return Object.assign({}, state, { state: action.payload })
-      }
+      return Object.assign({}, state, { state: action.payload })
 
     case MovieRankingState.top10revYear:
       return Object.assign({}, state, { state: action.payload })
 
     default:
-      return state
+      return Object.assign({}, state, { state: state.state })
   }
 }
 
