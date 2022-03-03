@@ -10,4 +10,10 @@ export const PillBody = styled.div`
   border: 1px solid ${colors.pillBorder};
   padding: 8px 12px;
   cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    color: white;
+    background: ${colors.pill};
+  }
 `

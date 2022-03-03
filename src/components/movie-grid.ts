@@ -66,6 +66,7 @@ export const MovieInfo = styled(MovieGrid)`
 
     svg {
       color: ${colors.icon};
+      transition: color 0.5s ease;
     }
   }
 
