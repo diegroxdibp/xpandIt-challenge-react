@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MovieRankingState } from '../../models/movie-ranking-status'
 import { PillsOptions } from '../../models/pills-options'
@@ -13,12 +13,6 @@ interface Props {
 }
 
 export const Pill: FC<Props> = (props) => {
-  const [modalState, useModalState] = useState<boolean>(false)
-
-  useEffect(() => {
-    useModalState(modalState)
-  }, [modalState])
-
   const dispatch = useDispatch()
   const MOVIE_RANKING = useSelector((state: RootState) => state.movieRanking)
   const YEAR = useSelector((state: RootState) => state.year)
@@ -36,7 +30,6 @@ export const Pill: FC<Props> = (props) => {
         break
 
       case PillsOptions.top10revYear:
-        useModalState(true)
         dispatch(yearSelection(true))
         if (
           MOVIE_RANKING.state !== MovieRankingState.top10revYear &&
